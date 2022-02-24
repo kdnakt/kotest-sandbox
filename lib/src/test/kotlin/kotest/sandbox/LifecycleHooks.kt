@@ -1,7 +1,10 @@
 package kotest.sandbox
 
 import io.kotest.assertions.fail
+import io.kotest.core.listeners.AfterSpecListener
+import io.kotest.core.listeners.BeforeSpecListener
 import io.kotest.core.spec.BeforeTest
+import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
 
@@ -46,3 +49,25 @@ class LifecycleHooksExample2: WordSpec() {
         }
     }
 }
+
+// Listener is simple hook
+class MyTestListener : BeforeSpecListener, AfterSpecListener {
+    override suspend fun beforeSpec(spec: Spec) {
+        println("power up kafka")
+    }
+    override suspend fun afterSpec(spec: Spec) {
+        println("shutdown kafka")
+    }
+}
+
+// extension is advanced hook
+class TestSpecWithExtension : WordSpec({
+    extension(MyTestListener())
+
+    // tests here
+    "this test" should {
+        "be alive" {
+            println("Johnny5 is alive!")
+        }
+    }
+})
