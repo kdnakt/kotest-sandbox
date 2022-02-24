@@ -1,10 +1,16 @@
 package kotest.sandbox
 
+import io.kotest.core.config.AbstractProjectConfig
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
+
+class ProjectConfig: AbstractProjectConfig() {
+    // This project wide config will be overwritten by each spec configuration
+    override val isolationMode = IsolationMode.InstancePerLeaf
+}
 
 class IsolationModeWithDSL : WordSpec({
     isolationMode = IsolationMode.SingleInstance
