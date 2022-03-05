@@ -32,6 +32,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
+    testImplementation("io.kotest:kotest-framework-datatest:5.1.0")
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
 //    implementation("com.google.guava:guava:30.1-jre")
