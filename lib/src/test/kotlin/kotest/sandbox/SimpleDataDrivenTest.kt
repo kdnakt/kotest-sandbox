@@ -1,12 +1,18 @@
 package kotest.sandbox
 
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.datatest.WithDataTestName
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 
 fun isPythagTriple(a: Int, b: Int, c: Int): Boolean = a * a + b * b == c * c
 
 data class PythagTriple(val a: Int, val b: Int, val c: Int)
+
+data class PythagTripleWithTestName(val a: Int, val b: Int, val c: Int)
+    : WithDataTestName {
+    override fun dataTestName() = "wibble $a, $b, $c wobble"
+}
 
 class SimpleDataDrivenTest : FunSpec({
     context("Pythag triples tests: true") {
@@ -23,8 +29,8 @@ class SimpleDataDrivenTest : FunSpec({
 
     context("Pythag triples tests: false") {
         withData(
-            PythagTriple(3, 4, 6),
-            PythagTriple(7, 24, 24)
+            PythagTripleWithTestName(3, 4, 6),
+            PythagTripleWithTestName(7, 24, 24)
         ) { (a, b, c) ->
             isPythagTriple(a, b, c) shouldBe false
         }
