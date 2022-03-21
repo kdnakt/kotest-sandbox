@@ -28,3 +28,49 @@ class MockkExample : FunSpec({
     }
 
 })
+
+class MockkExample2 : FunSpec({
+
+    lateinit var repository: MyRepository
+    lateinit var target: MyService
+
+    beforeTest {
+        repository = mockk()
+        target = MyService(repository)
+    }
+
+    test("Saves to repository") {
+        every { repository.save(any()) } just Runs
+        target.save(MyDataClass("a"))
+        verify(exactly = 1) { repository.save(MyDataClass("a")) }
+    }
+
+    test("Saves to repository as well") {
+        every { repository.save(any()) } just Runs
+        target.save(MyDataClass("a"))
+        verify(exactly = 1) { repository.save(MyDataClass("a")) }
+    }
+})
+
+class MockkExample3 : FunSpec({
+
+    val repository = mockk<MyRepository>()
+    val target = MyService(repository)
+
+    afterTest {
+        clearMocks(repository)
+    }
+
+    test("Saves to repository") {
+        every { repository.save(any()) } just Runs
+        target.save(MyDataClass("a"))
+        verify(exactly = 1) { repository.save(MyDataClass("a")) }
+    }
+
+    test("Saves to repository as well") {
+        every { repository.save(any()) } just Runs
+        target.save(MyDataClass("a"))
+        verify(exactly = 1) { repository.save(MyDataClass("a")) }
+    }
+
+})

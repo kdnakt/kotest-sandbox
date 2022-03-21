@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 class ProjectConfig: AbstractProjectConfig() {
     // This project wide config will be overwritten by each spec configuration
-    override val isolationMode = IsolationMode.InstancePerLeaf
+//    override val isolationMode = IsolationMode.InstancePerLeaf
 }
 
 class IsolationModeWithDSL : WordSpec({
