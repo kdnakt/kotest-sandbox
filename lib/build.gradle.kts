@@ -12,6 +12,9 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+
+    // coverage
+    jacoco
 }
 
 repositories {
@@ -48,4 +51,21 @@ dependencies {
     testImplementation("org.apache.commons:commons-lang3:3.0")
 
     testImplementation("io.mockk:mockk:1.12.3")
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+//    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir') // optional
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        html.required.set(true)
+        html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
+    }
 }
