@@ -75,3 +75,18 @@ class RandomSpec : StringSpec() {
         }
     }
 }
+
+class LexicographicSpec : StringSpec() {
+
+    override fun testCaseOrder(): TestCaseOrder? = TestCaseOrder.Lexicographic
+
+    init {
+        "foo" {
+            println("I run second as bar < foo")
+        }
+
+        "bar" {
+            println("I run first as bar < foo")
+        }
+    }
+}
