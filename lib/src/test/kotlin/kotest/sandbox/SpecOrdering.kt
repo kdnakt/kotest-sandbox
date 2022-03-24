@@ -2,6 +2,8 @@ package kotest.sandbox
 
 import io.kotest.core.spec.Order
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.core.test.TestCaseOrder
 import io.kotest.matchers.string.shouldHaveLength
 import java.time.ZonedDateTime
 
@@ -43,3 +45,33 @@ class BazTest: FunSpec({
         println("BazTest ${ZonedDateTime.now()}")
     }
 })
+
+class SequentialSpec : StringSpec() {
+
+    override fun testCaseOrder(): TestCaseOrder? = TestCaseOrder.Sequential
+
+    init {
+        "foo" {
+            println("I run first as I'm defined first")
+        }
+
+        "bar" {
+            println("I run second as I'm defined second")
+        }
+    }
+}
+
+class RandomSpec : StringSpec() {
+
+    override fun testCaseOrder(): TestCaseOrder? = TestCaseOrder.Random
+
+    init {
+        "foo" {
+            println("foo: This test may run first or second")
+        }
+
+        "bar" {
+            println("bar: This test may run first or second")
+        }
+    }
+}
