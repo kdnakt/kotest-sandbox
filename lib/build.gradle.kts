@@ -51,6 +51,11 @@ dependencies {
     testImplementation("org.apache.commons:commons-lang3:3.0")
 
     testImplementation("io.mockk:mockk:1.12.3")
+
+    testImplementation("io.kotest.extensions:kotest-extensions-mockserver:1.1.1")
+    testImplementation("io.kotest.extensions:kotest-assertions-ktor:1.0.3")
+    testImplementation("io.ktor:ktor-client-core:2.0.0")
+    testImplementation("io.ktor:ktor-client-cio:2.0.0")
 }
 
 jacoco {
