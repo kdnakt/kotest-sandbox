@@ -9,5 +9,6 @@
 
 rootProject.name = "kotest-sandbox"
 include("lib",
+    "kotlintest3",
     "kotest4"
 )
