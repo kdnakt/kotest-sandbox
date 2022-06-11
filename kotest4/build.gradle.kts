@@ -32,11 +32,11 @@ dependencies {
     // Use the Kotlin JDK 8 standard library.
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-//    testImplementation("io.kotest:kotest-runner-junit5:4.6.4")
+    testImplementation("io.kotest:kotest-runner-junit5:4.6.4")
 
     // first release of duplicated test name mode
 //    testImplementation("io.kotest:kotest-runner-junit5:4.5.0")
 
-    testImplementation("io.kotest:kotest-runner-junit5:4.4.3")
+//    testImplementation("io.kotest:kotest-runner-junit5:4.4.3")
 }
 
