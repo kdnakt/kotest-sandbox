@@ -8,4 +8,6 @@
  */
 
 rootProject.name = "kotest-sandbox"
-include("lib")
+include("lib",
+    "kotest4"
+)
